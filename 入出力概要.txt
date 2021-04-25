@@ -1,0 +1,10 @@
+input 
+ecbファイルor プロジェクトファイル
+
+output
+プロジェクトファイル&CSVファイル
+    ExternalWiringList
+    InternalWiringList
+    DeviceList
+    PortList
+

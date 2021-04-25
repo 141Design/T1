@@ -1,0 +1,9 @@
+SN SignalName 
+PN -out PortName1 Dev1
+PN -in PortName2 Dev1
+PN -in PortName3 Dev1
+PN -in PortName4 Dev1
+
+SP 
+
+PP
