@@ -23,24 +23,30 @@ using System.Text.RegularExpressions;
 */
 
 
-namespace ErrorPartsListGenerator
+namespace ErrorPartsListMaker
 {
     class Program
     {
         [STAThread]
         static void Main(string[] args)
         {
-            string NetListData = "";
+
+            ObjectList objlist = new ObjectList();
+
             
+
+            /*
+            string NetListData = "";
+
             while (true)
             {
                 OpenFileDialog ofDialog = new OpenFileDialog();
                 ofDialog.InitialDirectory = @"C:";
                 ofDialog.Title = "Import net list file";
 
-                if(ofDialog.ShowDialog() == DialogResult.OK)
+                if (ofDialog.ShowDialog() == DialogResult.OK)
                 {
-                    StreamReader sr = new StreamReader(ofDialog.FileName,Encoding.GetEncoding("UTF-8"));
+                    StreamReader sr = new StreamReader(ofDialog.FileName, Encoding.GetEncoding("UTF-8"));
                     NetListData = sr.ReadToEnd();
                     sr.Close();
 
@@ -54,11 +60,47 @@ namespace ErrorPartsListGenerator
                     Console.WriteLine("Cancelled");
                 }
                 ofDialog.Dispose();
-                
-            }
 
+            }
+            */
+
+        }
+    }
+
+    public class ObjectList
+    {
+        public List<ObjectBase> Objects;
+
+        public ObjectList()
+        {
+            Objects = new List<ObjectBase>();
+        }
+
+        public ObjectBase GetObject(string propertyKey, string value)
+        {
+            ObjectBase retObject = new ObjectBase();
+            foreach (ObjectBase obj in Objects)
+            {
+                if (obj.Property.ContainsKey(propertyKey))
+                {
+                    if(obj.Property[propertyKey] == value)
+                    {
+                        retObject = obj;
+                    }
+                }
+            }
+            return retObject;
         }
 
 
     }
+    
+    public class ObjectBase {
+        public Dictionary<string, string> Property;
+        public ObjectBase(){
+            Property = new Dictionary<string, string>();
+        }
+    }
+
+
 }
